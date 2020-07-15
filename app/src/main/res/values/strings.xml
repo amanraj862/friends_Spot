@@ -3,5 +3,14 @@
     <string name="enter_e_mail">Enter E-mail</string>
     <string name="enter_password">Enter Password</string>
     <string name="welcome">Welcome</string>
-    <string name="todo">TODO</string>
+    <string name="todo1">TODO</string>
+    <string name="question_place">Question place?</string>
+    <string name="option1">option1</string>
+    <string name="option2">option2</string>
+    <string name="option4">option4</string>
+    <string name="option3">option3</string>
+    <string name="button">Button</string>
+    <string name="next">next</string>
+    <string name="for_trying_out_our_app_hope_you_enjoyed_it_and_we_ll_try_to_deliver_more_such_apps_your_certificate_will_be_delivered_to_you_in_1_2_days">for trying out our app, hope you enjoyed it and we\'ll try to deliver more such apps. Your certificate will be delivered to you in 1-2 days.</string>
+    <string name="todo2">TODO</string>
 </resources>

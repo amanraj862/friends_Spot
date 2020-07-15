@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -13,6 +14,12 @@ public class ques extends AppCompatActivity {
     Button button2;
     Button button3;
     Button button4;
+    Button button;
+
+    public void nextquestion(View view){
+        Intent intent1=new Intent(ques.this,thankyou.class);
+        startActivity(intent1);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +29,7 @@ public class ques extends AppCompatActivity {
         button2=findViewById(R.id.Button2);
         button3=findViewById(R.id.Button3);
         button4=findViewById(R.id.Button4);
+        button=findViewById(R.id.button);
         Intent intent=getIntent();
     }
 }
