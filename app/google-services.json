@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "9752436491",
+    "firebase_url": "https://friendsspot1112.firebaseio.com",
+    "project_id": "friendsspot1112",
+    "storage_bucket": "friendsspot1112.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:9752436491:android:871a289fd43051746f8c0e",
+        "android_client_info": {
+          "package_name": "com.example.friendsspot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "9752436491-dli9r685be009ilhimj6jcq61618tn64.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.friendsspot",
+            "certificate_hash": "2ce5b6c8a05426fb25756d5f4dc42d813bae97eb"
+          }
+        },
+        {
+          "client_id": "9752436491-8vlao060om7hqsiu002emfo0rjapj4ug.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUTMxmmeqvUbsezXP0T3bEHosTDBHAfUI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "9752436491-8vlao060om7hqsiu002emfo0rjapj4ug.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
