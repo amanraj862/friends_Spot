@@ -9,7 +9,7 @@
     tools:context=".ques">
 
     <TextView
-        android:id="@+id/questiontView"
+        android:id="@+id/questionView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -33,9 +33,11 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="65dp"
         android:layout_marginEnd="30dp"
+        android:layout_marginBottom="346dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/questiontView">
+        app:layout_constraintTop_toBottomOf="@+id/questionView">
 
 
         <Button
@@ -91,26 +93,5 @@
             app:layout_rowWeight="1" />
 
     </androidx.gridlayout.widget.GridLayout>
-
-    <Button
-        android:id="@+id/button"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#69F0AE"
-        android:drawablePadding="20sp"
-        android:elevation="40sp"
-        android:fontFamily="@font/nosifer"
-        android:onClick="nextquestion"
-        android:outlineProvider="paddedBounds"
-        android:text="@string/next"
-        android:textColor="#131313"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gridLayout"
-        app:layout_constraintVertical_bias="0.815" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
