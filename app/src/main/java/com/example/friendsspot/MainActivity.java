@@ -1,5 +1,4 @@
 package com.example.friendsspot;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 

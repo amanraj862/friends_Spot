@@ -42,9 +42,10 @@
 
         <Button
             android:id="@+id/Button1"
+            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="#0B0A0A"
+            android:background="#0B0A0A"
             android:text="@string/option1"
             android:textColor="#FFFFFF"
             app:layout_column="0"
@@ -55,9 +56,10 @@
 
         <Button
             android:id="@+id/Button2"
+            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="#0B0A0A"
+            android:background="#0B0A0A"
             android:text="@string/option2"
             android:textColor="#FFFFFF"
             app:layout_column="0"
@@ -68,9 +70,10 @@
 
         <Button
             android:id="@+id/Button3"
+            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="#0B0A0A"
+            android:background="#0B0A0A"
             android:text="@string/option3"
             android:textColor="#FFFFFF"
             app:layout_column="0"
@@ -81,9 +84,10 @@
 
         <Button
             android:id="@+id/Button4"
+            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="#0B0A0A"
+            android:background="#0B0A0A"
             android:text="@string/option4"
             android:textColor="#FFFFFF"
             app:layout_column="0"
