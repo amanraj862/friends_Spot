@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Friends Spot</string>
     <string name="enter_e_mail">Enter E-mail</string>
-    <string name="enter_password">Enter Password</string>
+    <string name="enter_password">Password(6 character)</string>
     <string name="welcome">Welcome</string>
     <string name="todo1">TODO</string>
     <string name="question_place">Question place?</string>

@@ -1,17 +1,21 @@
 package com.example.friendsspot;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.friendsspot.Model.Question;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,16 +31,17 @@ public class ques extends AppCompatActivity {
     // Write a message to the database
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference reference;
-    int total=0;
-    int correct=0;
+    public static int total = 0;
+    public static int correct = 0;
 
-    public void nextquestion(){
+    public void nextquestion() {
         total++;
-        if(total>5) {
+        if (total > 5) {
             Intent intent1 = new Intent(ques.this, thankyou.class);
+            intent1.putExtra("correctans", correct);
             startActivity(intent1);
-        }
-        else{
+
+        } else {
             reference=database.getReference().child("Questions").child(String.valueOf(total));
             reference.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -57,11 +62,11 @@ public class ques extends AppCompatActivity {
                                 handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                   correct++;
-                                 button1.setBackgroundColor(Color.parseColor("#0B0A0A"));
-                                 nextquestion();
+                                        correct++;
+                                        button1.setBackgroundColor(Color.parseColor("#0B0A0A"));
+                                        nextquestion();
                                     }
-                                },1500);
+                                }, 1000);
                             }
                             else{
                             button1.setBackgroundColor(Color.RED);
@@ -124,7 +129,7 @@ public class ques extends AppCompatActivity {
                                         button2.setBackgroundColor(Color.parseColor("#0B0A0A"));
                                         nextquestion();
                                     }
-                                },1500);
+                                }, 1000);
                             }
                             else{
                                 button2.setBackgroundColor(Color.RED);
@@ -168,7 +173,7 @@ public class ques extends AppCompatActivity {
                                             button4.setBackgroundColor(Color.parseColor("#0B0A0A"));
                                             nextquestion();
                                         }
-                                    },1500);
+                                    }, 1000);
 
                                 }
                             }
@@ -187,7 +192,7 @@ public class ques extends AppCompatActivity {
                                         button3.setBackgroundColor(Color.parseColor("#0B0A0A"));
                                         nextquestion();
                                     }
-                                },1500);
+                                }, 1000);
                             }
                             else{
                                 button3.setBackgroundColor(Color.RED);
@@ -231,7 +236,7 @@ public class ques extends AppCompatActivity {
                                             button4.setBackgroundColor(Color.parseColor("#0B0A0A"));
                                             nextquestion();
                                         }
-                                    },1500);
+                                    }, 1000);
 
                                 }
                             }
@@ -250,7 +255,7 @@ public class ques extends AppCompatActivity {
                                         button4.setBackgroundColor(Color.parseColor("#0B0A0A"));
                                         nextquestion();
                                     }
-                                },1500);
+                                }, 1000);
                             }
                             else{
                                 button4.setBackgroundColor(Color.RED);
@@ -294,7 +299,7 @@ public class ques extends AppCompatActivity {
                                             button4.setBackgroundColor(Color.parseColor("#0B0A0A"));
                                             nextquestion();
                                         }
-                                    },1500);
+                                    }, 1000);
 
                                 }
                             }
@@ -317,13 +322,39 @@ public class ques extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         setContentView(R.layout.activity_ques);
-        questionview=findViewById(R.id.questionView);
-        button1=findViewById(R.id.Button1);
-        button2=findViewById(R.id.Button2);
-        button3=findViewById(R.id.Button3);
-        button4=findViewById(R.id.Button4);
+        questionview = findViewById(R.id.questionView);
+        button1 = findViewById(R.id.Button1);
+        button2 = findViewById(R.id.Button2);
+        button3 = findViewById(R.id.Button3);
+        button4 = findViewById(R.id.Button4);
         nextquestion();
-        Intent intent2=getIntent();
+        Intent intent2 = getIntent();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.main_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+            case R.id.signout:
+                FirebaseAuth.getInstance().signOut();
+                System.exit(0);
+                return true;
+            case R.id.exit:
+                finishAffinity();
+                System.exit(0);
+                return true;
+            default:
+                return false;
+
+        }
     }
 }
