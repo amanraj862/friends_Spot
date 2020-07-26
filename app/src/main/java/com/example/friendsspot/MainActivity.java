@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
+        Intent intent4 = getIntent();
         welcometextview = findViewById(R.id.WelcometextView);
         emailText = findViewById(R.id.editEmailAddress);
         loginimageButton = findViewById(R.id.loginimageButton);
@@ -83,8 +84,14 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
-    public void signup(){
-Intent intent=new Intent(MainActivity.this,ques.class);
-startActivity(intent);
+
+    public void signup() {
+        Intent intent = new Intent(MainActivity.this, ques.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        finishAffinity();
     }
 }

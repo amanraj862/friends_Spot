@@ -28,6 +28,7 @@ public class ques extends AppCompatActivity {
     Button button2;
     Button button3;
     Button button4;
+    TextView textView3;
     // Write a message to the database
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference reference;
@@ -36,6 +37,7 @@ public class ques extends AppCompatActivity {
 
     public void nextquestion() {
         total++;
+        textView3.setText("score:" + correct + "/10 ");
         if (total > 5) {
             Intent intent1 = new Intent(ques.this, thankyou.class);
             intent1.putExtra("correctans", correct);
@@ -46,19 +48,30 @@ public class ques extends AppCompatActivity {
             reference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    final Question question=dataSnapshot.getValue(Question.class);
+                    final Question question = dataSnapshot.getValue(Question.class);
                     assert question != null;
+                    questionview.clearAnimation();
+                    questionview.setTranslationX(-1000);
+                    questionview.animate().translationXBy(1000).setDuration(1500);
                     questionview.setText(question.getQues());
+                    button1.setVisibility(View.INVISIBLE);
+                    button2.setVisibility(View.INVISIBLE);
+                    button3.setVisibility(View.INVISIBLE);
+                    button4.setVisibility(View.INVISIBLE);
                     button1.setText(question.getOption1());
                     button2.setText(question.getOption2());
                     button3.setText(question.getOption3());
                     button4.setText(question.getOption4());
+                    button1.setVisibility(View.VISIBLE);
+                    button2.setVisibility(View.VISIBLE);
+                    button3.setVisibility(View.VISIBLE);
+                    button4.setVisibility(View.VISIBLE);
                     button1.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if(button1.getText().toString().equals(question.getResult())){
+                            if (button1.getText().toString().equals(question.getResult())) {
                                 button1.setBackgroundColor(Color.GREEN);
-                                Handler handler=new Handler();
+                                Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
@@ -329,6 +342,7 @@ public class ques extends AppCompatActivity {
         button2 = findViewById(R.id.Button2);
         button3 = findViewById(R.id.Button3);
         button4 = findViewById(R.id.Button4);
+        textView3 = findViewById(R.id.textView3);
         nextquestion();
         Intent intent2 = getIntent();
     }

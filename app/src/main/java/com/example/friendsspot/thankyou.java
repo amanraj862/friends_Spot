@@ -25,7 +25,7 @@ public class thankyou extends AppCompatActivity {
         Intent intent = getIntent();
         int correct = intent.getIntExtra("correctans", 0);
         TextView textView2 = findViewById(R.id.textView2);
-        textView2.setText("score:" + correct + "/10 ");
+        textView2.setText("Final score:" + correct + "/10 ");
     }
 
     @Override
@@ -47,8 +47,8 @@ public class thankyou extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.signout:
                 FirebaseAuth.getInstance().signOut();
-                finishAffinity();
-                System.exit(0);
+                Intent intent3 = new Intent(thankyou.this, MainActivity.class);
+                startActivity(intent3);
                 return true;
             case R.id.exit:
                 finishAffinity();
