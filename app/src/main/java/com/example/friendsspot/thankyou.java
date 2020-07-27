@@ -25,7 +25,7 @@ public class thankyou extends AppCompatActivity {
         Intent intent = getIntent();
         int correct = intent.getIntExtra("correctans", 0);
         TextView textView2 = findViewById(R.id.textView2);
-        textView2.setText("Final score:" + correct + "/10 ");
+        textView2.setText("Final score:" + correct + "/20 ");
     }
 
     @Override

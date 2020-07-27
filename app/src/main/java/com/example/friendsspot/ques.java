@@ -37,14 +37,14 @@ public class ques extends AppCompatActivity {
 
     public void nextquestion() {
         total++;
-        textView3.setText("score:" + correct + "/10 ");
-        if (total > 5) {
+        textView3.setText("score:" + correct + "/20 ");
+        if (total > 20) {
             Intent intent1 = new Intent(ques.this, thankyou.class);
             intent1.putExtra("correctans", correct);
             startActivity(intent1);
 
         } else {
-            reference=database.getReference().child("Questions").child(String.valueOf(total));
+            reference = database.getReference().child("Questions").child(String.valueOf(total));
             reference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
