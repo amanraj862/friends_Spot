@@ -19,6 +19,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity {
     ImageButton loginimageButton;
     TextView welcometextview;
@@ -34,22 +36,20 @@ public class MainActivity extends AppCompatActivity {
         String email = emailText.getText().toString();
         String password = passwordText.getText().toString();
         try {
-            if (email != null && password != null) {
-                mAuth.signInWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    signup();
-                                } else {
-                                    signin();
+            mAuth.signInWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                signup();
+                            } else {
+                                signin();
 
-                                }
-
-                                // ...
                             }
-                        });
-            }
+
+                            // ...
+                        }
+                    });
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(this, "Enter a valid email and password", Toast.LENGTH_SHORT).show();
@@ -61,10 +61,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //Remove title bar
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
-        Intent intent4 = getIntent();
+        getIntent();
         welcometextview = findViewById(R.id.WelcometextView);
         emailText = findViewById(R.id.editEmailAddress);
         loginimageButton = findViewById(R.id.loginimageButton);

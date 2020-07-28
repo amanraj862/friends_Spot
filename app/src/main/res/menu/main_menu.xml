@@ -4,11 +4,11 @@
 
     <item
         android:id="@+id/followus"
-        android:title="Follow us"></item>
+        android:title="@string/follow_us" />
     <item
         android:id="@+id/signout"
-        android:title="Sign Out"></item>
+        android:title="@string/sign_out" />
     <item
         android:id="@+id/exit"
-        android:title="Exit"></item>
+        android:title="@string/exit" />
 </menu>

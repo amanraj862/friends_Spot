@@ -24,6 +24,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 public class ques extends AppCompatActivity {
     MediaPlayer mediaPlayer1;
     MediaPlayer mediaPlayer2;
@@ -382,7 +384,7 @@ public class ques extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setTitle("F.r.i.e.n.d.s Spot");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("F.r.i.e.n.d.s Spot");
         setContentView(R.layout.activity_ques);
         questionview = findViewById(R.id.questionView);
         button1 = findViewById(R.id.Button1);
@@ -399,7 +401,7 @@ public class ques extends AppCompatActivity {
         mediaPlayer1 = MediaPlayer.create(this, R.raw.correct);
         mediaPlayer2 = MediaPlayer.create(this, R.raw.wronganswer);
         nextquestion();
-        Intent intent2 = getIntent();
+        getIntent();
     }
 
     @Override

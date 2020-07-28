@@ -13,4 +13,8 @@
     <string name="next">next</string>
     <string name="for_trying_out_our_app_hope_you_enjoyed_it_and_we_ll_try_to_deliver_more_such_apps_your_certificate_will_be_delivered_to_you_in_1_2_days">for trying out our app, hope you enjoyed it and we\'ll try to deliver more such apps. Your certificate will be delivered to you in 1–2 days.</string>
     <string name="todo2">TODO</string>
+    <string name="thank_you_for_trying_our_app">Thank you for trying our app</string>
+    <string name="follow_us">Follow us</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="exit">Exit</string>
 </resources>

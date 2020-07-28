@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,15 +13,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Objects;
+
 public class thankyou extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setTitle("Thank you");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Thank you");
         setContentView(R.layout.activity_thankyou);
-        ImageView imageView = findViewById(R.id.imageView);
-        TextView textView = findViewById(R.id.textView);
+        findViewById(R.id.imageView);
+        findViewById(R.id.textView);
         Intent intent = getIntent();
         int correct = intent.getIntExtra("correctans", 0);
         TextView textView2 = findViewById(R.id.textView2);
