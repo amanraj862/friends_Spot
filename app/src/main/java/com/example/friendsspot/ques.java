@@ -2,6 +2,8 @@ package com.example.friendsspot;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
@@ -23,11 +25,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class ques extends AppCompatActivity {
+    MediaPlayer mediaPlayer1;
+    MediaPlayer mediaPlayer2;
     TextView questionview;
     Button button1;
     Button button2;
     Button button3;
     Button button4;
+    Button button5;
     TextView textView3;
     // Write a message to the database
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -37,7 +42,6 @@ public class ques extends AppCompatActivity {
 
     public void nextquestion() {
         total++;
-        textView3.setText("score:" + correct + "/20 ");
         if (total > 20) {
             Intent intent1 = new Intent(ques.this, thankyou.class);
             intent1.putExtra("correctans", correct);
@@ -58,40 +62,72 @@ public class ques extends AppCompatActivity {
                     button2.setVisibility(View.INVISIBLE);
                     button3.setVisibility(View.INVISIBLE);
                     button4.setVisibility(View.INVISIBLE);
+                    button5.setVisibility(View.INVISIBLE);
                     button1.setText(question.getOption1());
                     button2.setText(question.getOption2());
                     button3.setText(question.getOption3());
                     button4.setText(question.getOption4());
-                    button1.setVisibility(View.VISIBLE);
-                    button2.setVisibility(View.VISIBLE);
-                    button3.setVisibility(View.VISIBLE);
-                    button4.setVisibility(View.VISIBLE);
+                    button5.setText("Pass");
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            // Do something after 1s = 1000ms
+                            button1.setVisibility(View.VISIBLE);
+                            button2.setVisibility(View.VISIBLE);
+                            button3.setVisibility(View.VISIBLE);
+                            button4.setVisibility(View.VISIBLE);
+                            button5.setVisibility(View.VISIBLE);
+
+                        }
+                    }, 1400);
+                    button5.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            button5.setBackgroundColor(Color.BLUE);
+                            textView3.setText("Score : +0");
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    button5.setBackgroundColor(Color.parseColor("#0B0A0A"));
+                                    nextquestion();
+                                }
+                            }, 800);
+                        }
+                    });
+
                     button1.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             if (button1.getText().toString().equals(question.getResult())) {
                                 button1.setBackgroundColor(Color.GREEN);
+                                mediaPlayer1.start();
+                                textView3.setText("Score : +2");
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                        correct++;
+                                        correct += 2;
                                         button1.setBackgroundColor(Color.parseColor("#0B0A0A"));
                                         nextquestion();
                                     }
                                 }, 1000);
                             }
-                            else{
-                            button1.setBackgroundColor(Color.RED);
-                            if (button2.getText().toString().equals(question.getResult())){
-                                button2.setBackgroundColor(Color.GREEN);
-                                Handler handler=new Handler();
-                                handler.postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        button1.setBackgroundColor(Color.parseColor("#0B0A0A"));
-                                        button2.setBackgroundColor(Color.parseColor("#0B0A0A"));
-                                        button3.setBackgroundColor(Color.parseColor("#0B0A0A"));
+                            else {
+                                textView3.setText("Score : -1");
+                                correct -= 1;
+                                mediaPlayer2.start();
+                                button1.setBackgroundColor(Color.RED);
+                                if (button2.getText().toString().equals(question.getResult())) {
+                                    button2.setBackgroundColor(Color.GREEN);
+                                    Handler handler = new Handler();
+                                    handler.postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            button1.setBackgroundColor(Color.parseColor("#0B0A0A"));
+                                            button2.setBackgroundColor(Color.parseColor("#0B0A0A"));
+                                            button3.setBackgroundColor(Color.parseColor("#0B0A0A"));
                                         button4.setBackgroundColor(Color.parseColor("#0B0A0A"));
                                         nextquestion();
                                     }
@@ -132,23 +168,28 @@ public class ques extends AppCompatActivity {
                     button2.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if(button2.getText().toString().equals(question.getResult())){
+                            if(button2.getText().toString().equals(question.getResult())) {
                                 button2.setBackgroundColor(Color.GREEN);
-                                Handler handler=new Handler();
+                                mediaPlayer1.start();
+                                textView3.setText("Score : +2");
+                                Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                        correct++;
+                                        correct += 2;
                                         button2.setBackgroundColor(Color.parseColor("#0B0A0A"));
                                         nextquestion();
                                     }
                                 }, 1000);
                             }
-                            else{
+                            else {
+                                textView3.setText("Score : -1");
+                                correct -= 1;
+                                mediaPlayer2.start();
                                 button2.setBackgroundColor(Color.RED);
-                                if (button1.getText().toString().equals(question.getResult())){
+                                if (button1.getText().toString().equals(question.getResult())) {
                                     button1.setBackgroundColor(Color.GREEN);
-                                    Handler handler=new Handler();
+                                    Handler handler = new Handler();
                                     handler.postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
@@ -195,23 +236,28 @@ public class ques extends AppCompatActivity {
                     button3.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if(button3.getText().toString().equals(question.getResult())){
+                            if(button3.getText().toString().equals(question.getResult())) {
                                 button3.setBackgroundColor(Color.GREEN);
-                                Handler handler=new Handler();
+                                mediaPlayer1.start();
+                                textView3.setText("Score : +2");
+                                Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                        correct++;
+                                        correct += 2;
                                         button3.setBackgroundColor(Color.parseColor("#0B0A0A"));
                                         nextquestion();
                                     }
                                 }, 1000);
                             }
-                            else{
+                            else {
+                                textView3.setText("Score : -1");
+                                correct -= 1;
+                                mediaPlayer2.start();
                                 button3.setBackgroundColor(Color.RED);
-                                if (button2.getText().toString().equals(question.getResult())){
+                                if (button2.getText().toString().equals(question.getResult())) {
                                     button2.setBackgroundColor(Color.GREEN);
-                                    Handler handler=new Handler();
+                                    Handler handler = new Handler();
                                     handler.postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
@@ -258,23 +304,28 @@ public class ques extends AppCompatActivity {
                     button4.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if(button4.getText().toString().equals(question.getResult())){
+                            if(button4.getText().toString().equals(question.getResult())) {
                                 button4.setBackgroundColor(Color.GREEN);
-                                Handler handler=new Handler();
+                                mediaPlayer1.start();
+                                textView3.setText("Score : +2");
+                                Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                        correct++;
+                                        correct += 2;
                                         button4.setBackgroundColor(Color.parseColor("#0B0A0A"));
                                         nextquestion();
                                     }
                                 }, 1000);
                             }
-                            else{
+                            else {
+                                textView3.setText("Score : -1");
+                                correct -= 1;
+                                mediaPlayer2.start();
                                 button4.setBackgroundColor(Color.RED);
-                                if (button2.getText().toString().equals(question.getResult())){
+                                if (button2.getText().toString().equals(question.getResult())) {
                                     button2.setBackgroundColor(Color.GREEN);
-                                    Handler handler=new Handler();
+                                    Handler handler = new Handler();
                                     handler.postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
@@ -318,10 +369,6 @@ public class ques extends AppCompatActivity {
                             }
                         }
                     });
-
-
-
-
                 }
 
                 @Override
@@ -335,14 +382,22 @@ public class ques extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setTitle("F.r.i.e.n.d.s Spot");
         setContentView(R.layout.activity_ques);
         questionview = findViewById(R.id.questionView);
         button1 = findViewById(R.id.Button1);
         button2 = findViewById(R.id.Button2);
         button3 = findViewById(R.id.Button3);
         button4 = findViewById(R.id.Button4);
+        button5 = findViewById(R.id.Button5);
         textView3 = findViewById(R.id.textView3);
+        button1.setVisibility(View.INVISIBLE);
+        button2.setVisibility(View.INVISIBLE);
+        button3.setVisibility(View.INVISIBLE);
+        button4.setVisibility(View.INVISIBLE);
+        button5.setVisibility(View.INVISIBLE);
+        mediaPlayer1 = MediaPlayer.create(this, R.raw.correct);
+        mediaPlayer2 = MediaPlayer.create(this, R.raw.wronganswer);
         nextquestion();
         Intent intent2 = getIntent();
     }
@@ -365,6 +420,10 @@ public class ques extends AppCompatActivity {
             case R.id.exit:
                 finishAffinity();
                 System.exit(0);
+                return true;
+            case R.id.followus:
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/thegaietythoughts/"));
+                startActivity(browserIntent);
                 return true;
             default:
                 return false;

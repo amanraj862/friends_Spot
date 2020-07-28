@@ -1,6 +1,7 @@
 package com.example.friendsspot;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,14 +19,14 @@ public class thankyou extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setTitle("Thank you");
         setContentView(R.layout.activity_thankyou);
         ImageView imageView = findViewById(R.id.imageView);
         TextView textView = findViewById(R.id.textView);
         Intent intent = getIntent();
         int correct = intent.getIntExtra("correctans", 0);
         TextView textView2 = findViewById(R.id.textView2);
-        textView2.setText("Final score:" + correct + "/20 ");
+        textView2.setText("Final score: " + correct + "/40 ");
     }
 
     @Override
@@ -53,6 +54,10 @@ public class thankyou extends AppCompatActivity {
             case R.id.exit:
                 finishAffinity();
                 System.exit(0);
+                return true;
+            case R.id.followus:
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/thegaietythoughts/"));
+                startActivity(browserIntent);
                 return true;
             default:
                 return false;

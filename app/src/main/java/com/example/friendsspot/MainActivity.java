@@ -1,6 +1,7 @@
 package com.example.friendsspot;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -23,10 +24,13 @@ public class MainActivity extends AppCompatActivity {
     TextView welcometextview;
     EditText emailText;
     EditText passwordText;
-
+    MediaPlayer mediaPlayer;
+    MediaPlayer mediaPlayer1;
 
     private FirebaseAuth mAuth;
+
     public void login(View view) {
+        mediaPlayer.start();
         String email = emailText.getText().toString();
         String password = passwordText.getText().toString();
         try {
@@ -64,6 +68,12 @@ public class MainActivity extends AppCompatActivity {
         welcometextview = findViewById(R.id.WelcometextView);
         emailText = findViewById(R.id.editEmailAddress);
         loginimageButton = findViewById(R.id.loginimageButton);
+        mediaPlayer = MediaPlayer.create(this, R.raw.buttonaud);
+        mediaPlayer1 = MediaPlayer.create(this, R.raw.friendstheme);
+        if (!mediaPlayer1.isPlaying()) {
+            mediaPlayer1.start();
+            mediaPlayer1.setLooping(true);
+        }
         passwordText = findViewById(R.id.editTextPassword);
         mAuth = FirebaseAuth.getInstance();
     }
@@ -86,12 +96,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void signup() {
-        Intent intent = new Intent(MainActivity.this, ques.class);
+        Intent intent = new Intent(MainActivity.this, Rules.class);
         startActivity(intent);
     }
 
     @Override
     public void onBackPressed() {
         finishAffinity();
+        mediaPlayer1.stop();
     }
 }
