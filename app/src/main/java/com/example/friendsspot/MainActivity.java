@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -60,11 +58,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //Remove title bar
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        Objects.requireNonNull(getSupportActionBar()).hide();
-        //fullscreen
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Login/Signup");
         setContentView(R.layout.activity_main);
         getIntent();
         welcometextview = findViewById(R.id.WelcometextView);
@@ -72,12 +66,10 @@ public class MainActivity extends AppCompatActivity {
         loginimageButton = findViewById(R.id.loginimageButton);
         mediaPlayer = MediaPlayer.create(this, R.raw.buttonaud);
         mediaPlayer1 = MediaPlayer.create(this, R.raw.friendstheme);
-        if (!mediaPlayer1.isPlaying()) {
-            //Play background music
+        //Play background music
             mediaPlayer1.start();
             mediaPlayer1.setVolume(0.5f, 0.5f);
             mediaPlayer1.setLooping(true);
-        }
         passwordText = findViewById(R.id.editTextPassword);
         mAuth = FirebaseAuth.getInstance();
     }
@@ -112,6 +104,6 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         // Exit app
         finishAffinity();
-        mediaPlayer1.stop();
+        System.exit(0);
     }
 }

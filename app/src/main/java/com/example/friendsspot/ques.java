@@ -451,6 +451,9 @@ public class ques extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.signout:
                 FirebaseAuth.getInstance().signOut();
+                finishAffinity();
+                Intent browserIntent2 = new Intent(Intent.ACTION_VIEW, Uri.parse("https://wittycodes.wixsite.com/friendsspot"));
+                startActivity(browserIntent2);
                 System.exit(0);
                 return true;
             case R.id.exit:

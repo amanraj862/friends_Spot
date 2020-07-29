@@ -53,8 +53,10 @@ public class thankyou extends AppCompatActivity {
             case R.id.signout:
                 //sign out of firebase
                 FirebaseAuth.getInstance().signOut();
-                Intent intent3 = new Intent(thankyou.this, MainActivity.class);
-                startActivity(intent3);
+                finishAffinity();
+                Intent browserIntent1 = new Intent(Intent.ACTION_VIEW, Uri.parse("https://wittycodes.wixsite.com/friendsspot"));
+                startActivity(browserIntent1);
+                System.exit(0);
                 return true;
             case R.id.exit:
                 //Exit App
