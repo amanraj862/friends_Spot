@@ -87,6 +87,8 @@ public class ques extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             button5.setBackgroundColor(Color.BLUE);
+                            MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.buttonaud1);
+                            mediaPlayer.start();
                             textView3.setText("Score : +0");
                             Handler handler = new Handler();
                             handler.postDelayed(new Runnable() {

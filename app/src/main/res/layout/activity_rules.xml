@@ -27,8 +27,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="90dp"
         android:layout_marginBottom="37dp"
+        android:background="#0C0B0B"
         android:fontFamily="@font/nosifer"
-        android:text="Rules"
+        android:text=" Rules "
         android:textColor="#F6F1F1"
         android:textSize="36sp"
         app:layout_constraintBottom_toTopOf="@+id/textView4"
@@ -37,20 +38,23 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="53dp"
-        android:backgroundTint="#0C0C0C"
+        android:layout_marginTop="19dp"
+        android:layout_marginBottom="41dp"
+        android:background="@drawable/mybutton"
+        android:backgroundTint="#090808"
+
         android:elevation="50dp"
-        android:fontFamily="@font/lemon"
         android:onClick="letsstart"
-        android:text="let's Start"
-        android:textColor="#FFFFFF"
+        android:padding="10dp"
+        android:text="Let's Start"
+        android:textColor="#ffffff"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 </androidx.constraintlayout.widget.ConstraintLayout>
