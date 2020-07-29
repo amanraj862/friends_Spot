@@ -26,16 +26,19 @@ public class thankyou extends AppCompatActivity {
         findViewById(R.id.textView);
         Intent intent = getIntent();
         int correct = intent.getIntExtra("correctans", 0);
+        //Display final score
         TextView textView2 = findViewById(R.id.textView2);
         textView2.setText("Final score: " + correct + "/40 ");
     }
 
     @Override
     public void onBackPressed() {
+        //Exit App
         finishAffinity();
         System.exit(0);
     }
 
+    // options menu functions
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
@@ -48,15 +51,18 @@ public class thankyou extends AppCompatActivity {
         super.onOptionsItemSelected(item);
         switch (item.getItemId()) {
             case R.id.signout:
+                //sign out of firebase
                 FirebaseAuth.getInstance().signOut();
                 Intent intent3 = new Intent(thankyou.this, MainActivity.class);
                 startActivity(intent3);
                 return true;
             case R.id.exit:
+                //Exit App
                 finishAffinity();
                 System.exit(0);
                 return true;
             case R.id.followus:
+                //Follow our instagram page @thegaitythoughts
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/thegaietythoughts/"));
                 startActivity(browserIntent);
                 return true;

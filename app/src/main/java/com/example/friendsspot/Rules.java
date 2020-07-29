@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class Rules extends AppCompatActivity {
     public void letsstart(View view) {
-        //start quiz
+        //start quiz intent
         Intent intent = new Intent(getApplicationContext(), ques.class);
         startActivity(intent);
         MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.buttonaud);

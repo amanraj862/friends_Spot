@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         String email = emailText.getText().toString();
         String password = passwordText.getText().toString();
         try {
+            //sign in into app using firebase
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         //Remove title bar
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         Objects.requireNonNull(getSupportActionBar()).hide();
+        //fullscreen
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
         getIntent();
@@ -71,14 +73,19 @@ public class MainActivity extends AppCompatActivity {
         mediaPlayer = MediaPlayer.create(this, R.raw.buttonaud);
         mediaPlayer1 = MediaPlayer.create(this, R.raw.friendstheme);
         if (!mediaPlayer1.isPlaying()) {
+            //Play background music
             mediaPlayer1.start();
+            mediaPlayer1.setVolume(0.5f, 0.5f);
             mediaPlayer1.setLooping(true);
         }
         passwordText = findViewById(R.id.editTextPassword);
         mAuth = FirebaseAuth.getInstance();
     }
-    public void signin(){String email=emailText.getText().toString();
-        String password=passwordText.getText().toString();
+
+    public void signin() {
+        //sign up into the app using firebase
+        String email = emailText.getText().toString();
+        String password = passwordText.getText().toString();
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -96,12 +103,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void signup() {
+        //jump to rules class intent
         Intent intent = new Intent(MainActivity.this, Rules.class);
         startActivity(intent);
     }
 
     @Override
     public void onBackPressed() {
+        // Exit app
         finishAffinity();
         mediaPlayer1.stop();
     }

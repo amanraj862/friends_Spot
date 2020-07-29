@@ -38,6 +38,7 @@ public class ques extends AppCompatActivity {
     TextView textView3;
     // Write a message to the database
     FirebaseDatabase database = FirebaseDatabase.getInstance();
+    //Access database
     DatabaseReference reference;
     public static int total = 0;
     public static int correct = 0;
@@ -45,36 +46,43 @@ public class ques extends AppCompatActivity {
     public void nextquestion() {
         total++;
         if (total > 20) {
+            //if questions are more than 20 jump to thank you activity
             Intent intent1 = new Intent(ques.this, thankyou.class);
             intent1.putExtra("correctans", correct);
             startActivity(intent1);
 
         } else {
+            //Access Database to get question and options
             reference = database.getReference().child("Questions").child(String.valueOf(total));
             reference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     final Question question = dataSnapshot.getValue(Question.class);
                     assert question != null;
+                    //animation for the Questionview
                     questionview.clearAnimation();
                     questionview.setTranslationX(-1000);
                     questionview.animate().translationXBy(1000).setDuration(1500);
+                    //get question
                     questionview.setText(question.getQues());
+                    //make buttons invisible
                     button1.setVisibility(View.INVISIBLE);
                     button2.setVisibility(View.INVISIBLE);
                     button3.setVisibility(View.INVISIBLE);
                     button4.setVisibility(View.INVISIBLE);
                     button5.setVisibility(View.INVISIBLE);
+                    //get options
                     button1.setText(question.getOption1());
                     button2.setText(question.getOption2());
                     button3.setText(question.getOption3());
                     button4.setText(question.getOption4());
                     button5.setText("Pass");
                     final Handler handler = new Handler();
+                    //handler to cause delay
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            // Do something after 1s = 1000ms
+                            // Make buttons visible after 1s = 1000ms
                             button1.setVisibility(View.VISIBLE);
                             button2.setVisibility(View.VISIBLE);
                             button3.setVisibility(View.VISIBLE);
@@ -83,11 +91,13 @@ public class ques extends AppCompatActivity {
 
                         }
                     }, 1400);
+                    //press button5 to pass the question
                     button5.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             button5.setBackgroundColor(Color.BLUE);
                             MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.buttonaud1);
+                            mediaPlayer.setVolume(50, 50);
                             mediaPlayer.start();
                             textView3.setText("Score : +0");
                             Handler handler = new Handler();
@@ -100,7 +110,7 @@ public class ques extends AppCompatActivity {
                             }, 800);
                         }
                     });
-
+                    //check if option one is correct and make it green
                     button1.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -119,6 +129,7 @@ public class ques extends AppCompatActivity {
                                 }, 1000);
                             }
                             else {
+                                //make the wrong option button red and right option button green
                                 textView3.setText("Score : -1");
                                 correct -= 1;
                                 mediaPlayer2.start();
@@ -129,6 +140,7 @@ public class ques extends AppCompatActivity {
                                     handler.postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
+                                            //change color of all the buttons back to normal and jump to next question
                                             button1.setBackgroundColor(Color.parseColor("#0B0A0A"));
                                             button2.setBackgroundColor(Color.parseColor("#0B0A0A"));
                                             button3.setBackgroundColor(Color.parseColor("#0B0A0A"));
@@ -143,6 +155,7 @@ public class ques extends AppCompatActivity {
                                 handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
+                                        //change color of all the buttons back to normal and jump to next question
                                         button1.setBackgroundColor(Color.parseColor("#0B0A0A"));
                                         button2.setBackgroundColor(Color.parseColor("#0B0A0A"));
                                         button3.setBackgroundColor(Color.parseColor("#0B0A0A"));
@@ -157,6 +170,7 @@ public class ques extends AppCompatActivity {
                                     handler.postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
+                                            //change color of all the buttons back to normal and jump to next question
                                             button1.setBackgroundColor(Color.parseColor("#0B0A0A"));
                                             button2.setBackgroundColor(Color.parseColor("#0B0A0A"));
                                             button3.setBackgroundColor(Color.parseColor("#0B0A0A"));
@@ -169,6 +183,7 @@ public class ques extends AppCompatActivity {
                             }
                         }
                     });
+                    //check if option 2 is correct and make it green
                     button2.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -187,6 +202,7 @@ public class ques extends AppCompatActivity {
                                 }, 1000);
                             }
                             else {
+                                //make the wrong option button red and right option button green
                                 textView3.setText("Score : -1");
                                 correct -= 1;
                                 mediaPlayer2.start();
@@ -197,6 +213,7 @@ public class ques extends AppCompatActivity {
                                     handler.postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
+                                            //change color of all the buttons back to normal and jump to next question
                                             button1.setBackgroundColor(Color.parseColor("#0B0A0A"));
                                             button2.setBackgroundColor(Color.parseColor("#0B0A0A"));
                                             button3.setBackgroundColor(Color.parseColor("#0B0A0A"));
@@ -211,6 +228,7 @@ public class ques extends AppCompatActivity {
                                     handler.postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
+                                            //change color of all the buttons back to normal and jump to next question
                                             button1.setBackgroundColor(Color.parseColor("#0B0A0A"));
                                             button2.setBackgroundColor(Color.parseColor("#0B0A0A"));
                                             button3.setBackgroundColor(Color.parseColor("#0B0A0A"));
@@ -225,6 +243,7 @@ public class ques extends AppCompatActivity {
                                     handler.postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
+                                            //change color of all the buttons back to normal and jump to next question
                                             button1.setBackgroundColor(Color.parseColor("#0B0A0A"));
                                             button2.setBackgroundColor(Color.parseColor("#0B0A0A"));
                                             button3.setBackgroundColor(Color.parseColor("#0B0A0A"));
@@ -237,6 +256,7 @@ public class ques extends AppCompatActivity {
                             }
                         }
                     });
+                    //check if option 3 is correct and make it green
                     button3.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -255,6 +275,7 @@ public class ques extends AppCompatActivity {
                                 }, 1000);
                             }
                             else {
+                                //make the wrong option button red and right option button green
                                 textView3.setText("Score : -1");
                                 correct -= 1;
                                 mediaPlayer2.start();
@@ -265,6 +286,7 @@ public class ques extends AppCompatActivity {
                                     handler.postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
+                                            //change color of all the buttons back to normal and jump to next question
                                             button1.setBackgroundColor(Color.parseColor("#0B0A0A"));
                                             button2.setBackgroundColor(Color.parseColor("#0B0A0A"));
                                             button3.setBackgroundColor(Color.parseColor("#0B0A0A"));
@@ -279,6 +301,7 @@ public class ques extends AppCompatActivity {
                                     handler.postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
+                                            //change color of all the buttons back to normal and jump to next question
                                             button1.setBackgroundColor(Color.parseColor("#0B0A0A"));
                                             button2.setBackgroundColor(Color.parseColor("#0B0A0A"));
                                             button3.setBackgroundColor(Color.parseColor("#0B0A0A"));
@@ -293,6 +316,7 @@ public class ques extends AppCompatActivity {
                                     handler.postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
+                                            //change color of all the buttons back to normal and jump to next question
                                             button1.setBackgroundColor(Color.parseColor("#0B0A0A"));
                                             button2.setBackgroundColor(Color.parseColor("#0B0A0A"));
                                             button3.setBackgroundColor(Color.parseColor("#0B0A0A"));
@@ -305,6 +329,7 @@ public class ques extends AppCompatActivity {
                             }
                         }
                     });
+                    //check if option 4 is correct and make it green
                     button4.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -323,6 +348,7 @@ public class ques extends AppCompatActivity {
                                 }, 1000);
                             }
                             else {
+                                //make the wrong option button red and right option button green
                                 textView3.setText("Score : -1");
                                 correct -= 1;
                                 mediaPlayer2.start();
@@ -333,6 +359,7 @@ public class ques extends AppCompatActivity {
                                     handler.postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
+                                            //change color of all the buttons back to normal and jump to next question
                                             button1.setBackgroundColor(Color.parseColor("#0B0A0A"));
                                             button2.setBackgroundColor(Color.parseColor("#0B0A0A"));
                                             button3.setBackgroundColor(Color.parseColor("#0B0A0A"));
@@ -347,6 +374,7 @@ public class ques extends AppCompatActivity {
                                     handler.postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
+                                            //change color of all the buttons back to normal and jump to next question
                                             button1.setBackgroundColor(Color.parseColor("#0B0A0A"));
                                             button2.setBackgroundColor(Color.parseColor("#0B0A0A"));
                                             button3.setBackgroundColor(Color.parseColor("#0B0A0A"));
@@ -361,6 +389,7 @@ public class ques extends AppCompatActivity {
                                     handler.postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
+                                            //change color of all the buttons back to normal and jump to next question
                                             button1.setBackgroundColor(Color.parseColor("#0B0A0A"));
                                             button2.setBackgroundColor(Color.parseColor("#0B0A0A"));
                                             button3.setBackgroundColor(Color.parseColor("#0B0A0A"));
@@ -386,6 +415,7 @@ public class ques extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //set title to F.r.i.e.n.d.s Spot
         Objects.requireNonNull(getSupportActionBar()).setTitle("F.r.i.e.n.d.s Spot");
         setContentView(R.layout.activity_ques);
         questionview = findViewById(R.id.questionView);
@@ -402,10 +432,12 @@ public class ques extends AppCompatActivity {
         button5.setVisibility(View.INVISIBLE);
         mediaPlayer1 = MediaPlayer.create(this, R.raw.correct);
         mediaPlayer2 = MediaPlayer.create(this, R.raw.wronganswer);
+        //call nextquestion function
         nextquestion();
         getIntent();
     }
 
+    // function on options menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
